@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Audio Transfer - Đề tài 7</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎵 Secure Audio Transfer</h1>
+            <p>Truyền tải file âm thanh an toàn với mã hóa Triple DES & RSA</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Sender Panel -->
+            <div class="sender-panel">
+                <h2 class="panel-title">👤 Người Gửi</h2>
+                
+                <div class="file-upload-area" id="fileUploadArea">
+                    <div class="upload-icon">🎵</div>
+                    <p><strong>Kéo thả file âm thanh vào đây</strong></p>
+                    <p>hoặc nhấn để chọn file (.mp3, .wav, .m4a)</p>
+                    <input type="file" id="audioFile" accept="audio/*" style="display: none;">
+                </div>
+
+                <div class="file-info" id="fileInfo" style="display: none;">
+                    <div class="info-card">
+                        <h3>📄 Thông tin file:</h3>
+                        <p><strong>Tên:</strong> <span id="fileName"></span></p>
+                        <p><strong>Kích thước:</strong> <span id="fileSize"></span></p>
+                        <p><strong>Thời lượng:</strong> <span id="fileDuration"></span></p>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button class="btn" id="generateKeysBtn">🔐 Tạo Khóa RSA</button>
+                    <button class="btn" id="startTransferBtn" disabled>📤 Bắt Đầu Truyền</button>
+                    <button class="btn btn-danger" id="resetBtn">🔄 Reset</button>
+                </div>
+
+                <div class="progress-section" id="progressSection" style="display: none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p class="progress-text" id="progressText">Đang chuẩn bị...</p>
+                </div>
+            </div>
+
+            <!-- Receiver Panel -->
+            <div class="receiver-panel">
+                <h2 class="panel-title">📥 Người Nhận</h2>
+                
+                <div class="status-card" id="receiverStatus">
+                    <div class="status-icon">⏳</div>
+                    <h3>Trạng thái: Chờ kết nối</h3>
+                    <p>Sẵn sàng nhận file từ người gửi</p>
+                </div>
+
+                <div class="segment-list" id="segmentList" style="display: none;">
+                    <h3>📦 Các đoạn nhận được:</h3>
+                    <div class="segments">
+                        <div class="segment-item" id="segment1">
+                            <span class="segment-number">1</span>
+                            <span class="segment-status">⏳ Chờ</span>
+                        </div>
+                        <div class="segment-item" id="segment2">
+                            <span class="segment-number">2</span>
+                            <span class="segment-status">⏳ Chờ</span>
+                        </div>
+                        <div class="segment-item" id="segment3">
+                            <span class="segment-number">3</span>
+                            <span class="segment-status">⏳ Chờ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-success" id="downloadBtn" disabled>💾 Tải File Đã Ghép</button>
+                    <button class="btn" id="verifyBtn" disabled>🔍 Kiểm Tra Toàn Vẹn</button>
+                </div>
+
+                <div class="verification-result" id="verificationResult" style="display: none;">
+                    <div class="result-card">
+                        <h3>✅ Kết Quả Kiểm Tra:</h3>
+                        <p id="verificationText"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Log Section -->
+        <div class="log-section">
+            <h3>📋 Nhật Ký Truyền Tải</h3>
+            <div class="log-container" id="logContainer">
+                <div class="log-entry">🚀 Hệ thống sẵn sàng...</div>
+            </div>
+        </div>
+
+        <!-- Technical Info -->
+        <div class="tech-info">
+            <h3>🔧 Thông Số Kỹ Thuật</h3>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <strong>Mã hóa:</strong> Triple DES
+                </div>
+                <div class="tech-item">
+                    <strong>Trao khóa:</strong> RSA 2048-bit (OAEP)
+                </div>
+                <div class="tech-item">
+                    <strong>Ký số:</strong> RSA + SHA-512
+                </div>
+                <div class="tech-item">
+                    <strong>Kiểm tra toàn vẹn:</strong> SHA-512
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
